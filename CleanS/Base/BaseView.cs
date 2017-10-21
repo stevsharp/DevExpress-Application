@@ -11,6 +11,9 @@ using DevExpress.XtraGrid;
 
 namespace CleanS.Base
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class BaseView : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         protected System.Windows.Forms.BindingSource bindingSource1;
