@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanS", "CleanS\CleanS.csproj", "{82EB41A1-A44E-4B57-BA83-E7836EDDF0C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enum", "Enum\Enum.csproj", "{01DB4128-5150-4876-A37E-2914A4B91948}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82EB41A1-A44E-4B57-BA83-E7836EDDF0C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82EB41A1-A44E-4B57-BA83-E7836EDDF0C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82EB41A1-A44E-4B57-BA83-E7836EDDF0C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82EB41A1-A44E-4B57-BA83-E7836EDDF0C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01DB4128-5150-4876-A37E-2914A4B91948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01DB4128-5150-4876-A37E-2914A4B91948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01DB4128-5150-4876-A37E-2914A4B91948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01DB4128-5150-4876-A37E-2914A4B91948}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C9B47EC6-3A86-42B6-9E30-CF458D20571E}
+	EndGlobalSection
+EndGlobal
