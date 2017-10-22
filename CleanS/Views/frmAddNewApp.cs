@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraScheduler;
@@ -145,6 +138,11 @@ namespace CleanS.Views
             controller.DisplayEnd = this.dtEnd.DateTime.Date + this.timeEnd.Time.TimeOfDay;
             controller.Subject = txSubject.Text;
             controller.ApplyChanges();
+        }
+
+        private void searchLookUpEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

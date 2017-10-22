@@ -202,6 +202,7 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="ResourceCleanS.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceCleanS.Designer.cs</LastGenOutput>

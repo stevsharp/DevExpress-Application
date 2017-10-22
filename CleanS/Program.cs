@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
-using DevExpress.UserSkins;
 using DevExpress.Skins;
-using DevExpress.LookAndFeel;
-using DevExpress.Xpo.DB;
-using System.Reflection;
-using System.Reflection.Emit;
-using MyEnum;
 
 namespace CleanS
 {
@@ -22,9 +16,7 @@ namespace CleanS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new ThreadExceptionEventHandler(MyCommonExceptionHandlingMethod);
-
             SkinManager.EnableFormSkins();
-
             Application.Run(new FrmMain());
         }
 
@@ -42,8 +34,10 @@ namespace CleanS
 
         private static void DisplayErrorBox(string stackTrace)
         {
-            var err = new ErrorForm();
-            err.ExceptionMessage = stackTrace;
+            var err = new ErrorForm
+            {
+                ExceptionMessage = stackTrace
+            };
             err.ShowDialog();
         }
 
