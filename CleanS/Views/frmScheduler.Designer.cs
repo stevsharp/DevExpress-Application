@@ -1,4 +1,6 @@
-﻿namespace CleanS.Views
+﻿using CleanS.CleanS;
+
+namespace CleanS.Views
 {
     partial class frmScheduler
     {
@@ -43,17 +45,17 @@
             this.dateNavigator1 = new DevExpress.XtraScheduler.DateNavigator();
             this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
             this.schedulerStorage1 = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.xpCollection1 = new DevExpress.Xpo.XPCollection(this.components);
             this.session1 = new DevExpress.Xpo.Session(this.components);
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.session1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -156,25 +158,37 @@
             this.schedulerControl1.Views.FullWeekView.TimeRulers.Add(timeRuler2);
             this.schedulerControl1.Views.WeekView.Enabled = false;
             this.schedulerControl1.Views.WorkWeekView.TimeRulers.Add(timeRuler3);
+            this.schedulerControl1.EditAppointmentFormShowing += new DevExpress.XtraScheduler.AppointmentFormEventHandler(this.schedulerControl1_EditAppointmentFormShowing);
             // 
             // schedulerStorage1
             // 
-            this.schedulerStorage1.Appointments.DataMember = "AppointmentEmployees";
             this.schedulerStorage1.Appointments.DataSource = this.bindingSource1;
+            this.schedulerStorage1.Appointments.Mappings.AllDay = "AllDay";
+            this.schedulerStorage1.Appointments.Mappings.Description = "Description";
+            this.schedulerStorage1.Appointments.Mappings.End = "EndDate";
+            this.schedulerStorage1.Appointments.Mappings.Label = "Label";
+            this.schedulerStorage1.Appointments.Mappings.Location = "Location";
+            this.schedulerStorage1.Appointments.Mappings.RecurrenceInfo = "RecurrenceInfo";
+            this.schedulerStorage1.Appointments.Mappings.ReminderInfo = "ReminderInfo";
+            this.schedulerStorage1.Appointments.Mappings.ResourceId = "ResourceID";
+            this.schedulerStorage1.Appointments.Mappings.Start = "StartDate";
+            this.schedulerStorage1.Appointments.Mappings.Status = "Status";
+            this.schedulerStorage1.Appointments.Mappings.Subject = "Subject";
+            this.schedulerStorage1.Appointments.Mappings.Type = "Type";
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = this.xpCollection1;
             // 
             // xpCollection1
             // 
-            this.xpCollection1.ObjectType = typeof(CleanS.Appointments);
+            this.xpCollection1.ObjectType = typeof(Appointments);
             this.xpCollection1.Session = this.session1;
             // 
             // session1
             // 
             this.session1.IsObjectModifiedOnNonPersistentPropertyChange = null;
             this.session1.TrackPropertiesModifications = false;
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = this.xpCollection1;
             // 
             // frmScheduler
             // 
@@ -192,9 +206,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.session1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

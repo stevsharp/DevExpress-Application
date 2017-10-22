@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraScheduler;
 using CleanS.Base;
+using CleanS.CleanS;
 
 namespace CleanS.Views
 {
@@ -54,6 +55,12 @@ namespace CleanS.Views
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             schedulerControl1.ActiveViewType = DevExpress.XtraScheduler.SchedulerViewType.Agenda;
+        }
+
+        private void schedulerControl1_EditAppointmentFormShowing(object sender, AppointmentFormEventArgs e)
+        {
+            var frm = new frmAddNewApp();
+            frm.Show();
         }
     }
 }
