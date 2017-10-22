@@ -61,6 +61,19 @@ namespace CleanS.Views
         {
             Appointment apt = e.Appointment;
 
+            bool openRecurrenceForm = apt.IsRecurring && schedulerStorage1.Appointments.IsNewAppointment(apt);
+
+            var frm = new frmAddNewApp((SchedulerControl)sender, apt, openRecurrenceForm);
+            frm.SetMenuManager(this.schedulerControl1.MenuManager);
+            frm.LookAndFeel.ParentLookAndFeel = this.LookAndFeel.ParentLookAndFeel;
+            e.DialogResult = frm.ShowDialog();
+            e.Handled = true;
+
+            if (apt.Type == AppointmentType.Pattern && schedulerControl1.SelectedAppointments.Contains(apt))
+                schedulerControl1.SelectedAppointments.Remove(apt);
+
+            schedulerControl1.Refresh();
+
         }
     }
 }

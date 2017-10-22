@@ -17,12 +17,17 @@ namespace CleanS.Views
     public partial class frmAddNewApp : DevExpress.XtraEditors.XtraForm
     {
         protected SchedulerControl control;
-        Appointment apt;
-        bool openRecurrenceForm = false;
-        int suspendUpdateCount;
-        IDXMenuManager menuManager;
-        MyAppointmentFormController controller;
-
+        protected Appointment apt;
+        protected bool openRecurrenceForm = false;
+        protected int suspendUpdateCount;
+        protected IDXMenuManager menuManager;
+        protected MyAppointmentFormController controller;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="apt"></param>
+        /// <param name="openRecurrenceForm"></param>
         public frmAddNewApp(SchedulerControl control, Appointment apt, bool openRecurrenceForm)
         {
             this.openRecurrenceForm = openRecurrenceForm;
@@ -33,7 +38,38 @@ namespace CleanS.Views
             SuspendUpdate();
             InitializeComponent();
             ResumeUpdate();
+            UpdateForm();
         }
+
+        private void UpdateForm()
+        {
+
+        }
+
+        public void SetMenuManager(IDXMenuManager menuManager)
+        {
+            SetMenuManagerCore(Controls, menuManager);
+            this.menuManager = menuManager;
+        }
+
+        void SetMenuManagerCore(Control.ControlCollection controls, IDXMenuManager menuManager)
+        {
+            int count = controls.Count;
+            for (int i = 0; i < count; i++)
+            {
+                Control control = controls[i];
+                SetMenuManagerCore(control.Controls, menuManager);
+                BaseEdit baseEdit = control as BaseEdit;
+                if (baseEdit == null)
+                    continue;
+                baseEdit.MenuManager = menuManager;
+            }
+        }
+
+        protected AppointmentStorage Appointments { get { return control.Storage.Appointments; } }
+        protected internal bool IsNewAppointment { get { return controller != null ? controller.IsNewAppointment : true; } }
+        protected bool IsUpdateSuspended { get { return suspendUpdateCount > 0; } }
+        public IDXMenuManager MenuManager { get { return menuManager; } }
 
         protected void SuspendUpdate()
         {
