@@ -133,6 +133,19 @@ namespace CleanS.Views
         {
 
         }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (!controller.IsConflictResolved())
+                return;
+
+            controller.SetStatus(edStatus.Status);
+            controller.SetLabel(edLabel.Label);
+            controller.DisplayStart = this.dtStart.DateTime.Date + this.timeStart.Time.TimeOfDay;
+            controller.DisplayEnd = this.dtEnd.DateTime.Date + this.timeEnd.Time.TimeOfDay;
+            controller.Subject = txSubject.Text;
+            controller.ApplyChanges();
+        }
     }
 
     public class MyAppointmentFormController : AppointmentFormController

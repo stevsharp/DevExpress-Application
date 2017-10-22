@@ -103,6 +103,7 @@
             this.btnOK.Size = new System.Drawing.Size(83, 41);
             this.btnOK.TabIndex = 49;
             this.btnOK.Text = "OK";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // timeEnd
             // 
