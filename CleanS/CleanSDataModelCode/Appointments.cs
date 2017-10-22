@@ -4,7 +4,7 @@ using DevExpress.Data.Filtering;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace CleanS
+namespace CleanS.CleanS
 {
 
     public partial class Appointments

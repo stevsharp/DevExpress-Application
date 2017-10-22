@@ -13,7 +13,7 @@ using CleanS.Base;
 
 namespace CleanS.Views
 {
-    public partial class frmScheduler : BaseView
+    public partial class frmScheduler : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         public frmScheduler()
         {
