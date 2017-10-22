@@ -43,7 +43,55 @@ namespace CleanS.Views
 
         private void UpdateForm()
         {
+            SuspendUpdate();
 
+            try
+            {
+                txSubject.Text = controller.Subject;
+                edStatus.Status = Appointments.Statuses[controller.StatusId];
+                edLabel.Label = Appointments.Labels[controller.LabelId];
+                dtStart.DateTime = controller.DisplayStart.Date;
+                dtEnd.DateTime = controller.DisplayEnd.Date;
+                timeStart.Time = DateTime.MinValue.AddTicks(controller.Start.TimeOfDay.Ticks);
+                timeEnd.Time = DateTime.MinValue.AddTicks(controller.End.TimeOfDay.Ticks);
+                edStatus.Storage = control.Storage;
+                edLabel.Storage = control.Storage;
+            }
+            finally
+            {
+                ResumeUpdate();
+            }
+            UpdateIntervalControls();
+        }
+
+        protected virtual void UpdateIntervalControls()
+        {
+            if (IsUpdateSuspended)
+                return;
+
+            SuspendUpdate();
+
+            try
+            {
+                dtStart.EditValue = controller.DisplayStart.Date;
+                dtEnd.EditValue = controller.DisplayEnd.Date;
+                timeStart.EditValue = controller.DisplayStart.TimeOfDay;
+                timeEnd.EditValue = controller.DisplayEnd.TimeOfDay;
+
+                Appointment editedAptCopy = controller.EditedAppointmentCopy;
+                bool showControls = IsNewAppointment || editedAptCopy.Type != AppointmentType.Pattern;
+                dtStart.Enabled = showControls;
+                dtEnd.Enabled = showControls;
+                bool enableTime = showControls && !controller.AllDay;
+                timeStart.Visible = enableTime;
+                timeStart.Enabled = enableTime;
+                timeEnd.Visible = enableTime;
+                timeEnd.Enabled = enableTime;
+            }
+            finally
+            {
+                ResumeUpdate();
+            }
         }
 
         public void SetMenuManager(IDXMenuManager menuManager)
@@ -79,6 +127,11 @@ namespace CleanS.Views
         {
             if (suspendUpdateCount > 0)
                 suspendUpdateCount--;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
