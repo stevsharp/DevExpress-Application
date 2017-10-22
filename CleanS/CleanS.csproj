@@ -209,6 +209,9 @@
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\frmAddNewApp.resx">
+      <DependentUpon>frmAddNewApp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\FrmEdit.resx">
       <DependentUpon>FrmEdit.cs</DependentUpon>
     </EmbeddedResource>

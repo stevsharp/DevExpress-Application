@@ -59,8 +59,8 @@ namespace CleanS.Views
 
         private void schedulerControl1_EditAppointmentFormShowing(object sender, AppointmentFormEventArgs e)
         {
-            var frm = new frmAddNewApp();
-            frm.Show();
+            Appointment apt = e.Appointment;
+
         }
     }
 }
