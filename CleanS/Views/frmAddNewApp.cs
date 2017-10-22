@@ -33,7 +33,9 @@ namespace CleanS.Views
             ResumeUpdate();
             UpdateForm();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         private void UpdateForm()
         {
             SuspendUpdate();
@@ -145,11 +147,29 @@ namespace CleanS.Views
 
         }
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class MyAppointmentFormController : AppointmentFormController
     {
         public MyAppointmentFormController(SchedulerControl control, Appointment apt) : base(control, apt)
         {
+        }
+
+        public override bool IsAppointmentChanged()
+        {
+            if (base.IsAppointmentChanged())
+                return true;
+
+
+            return false;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        protected override void ApplyCustomFieldsValues()
+        {
+
         }
     }
 }
