@@ -11,6 +11,8 @@ using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+
 namespace CleanS.CleanS
 {
     public static class ConnectionHelper
@@ -18,8 +20,28 @@ namespace CleanS.CleanS
         //public const string ConnectionString = @"XpoProvider=MSSqlServer;data source=WRC0A108;user id=sa;password=MANOSm!11;initial catalog=CleanS;Persist Security Info=true";
         //public const string ConnectionStringSql = @"data source=WRC0A108;user id=sa;password=MANOSm!11;initial catalog=CleanS;Persist Security Info=true";
 
-        public const string ConnectionString = @"XpoProvider=MSSqlServer;data source=.;user id=sa;password=MANOSm!11;initial catalog=CleanS;Persist Security Info=true";
-        public const string ConnectionStringSql = @"data source=.;user id=sa;password=MANOSm!11;initial catalog=CleanS;Persist Security Info=true";
+        //public const string ConnectionString = @"XpoProvider=MSSqlServer;data source=.;user id=sa;password=MANOSm!11;initial catalog=CleanS;Persist Security Info=true";
+        //public const string ConnectionStringSql = @"data source=.;user id=sa;password=MANOSm!11;initial catalog=CleanS;Persist Security Info=true";
+        /// <summary>
+        /// 
+        /// </summary>
+        public static String ConnectionString
+        {
+            get
+            {
+                return ConfigurationManager.ConnectionStrings["XPOServiceConnection"].ConnectionString;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static String ConnectionStringSql
+        {
+            get
+            {
+                return ConfigurationManager.ConnectionStrings["ServiceConnection"].ConnectionString;
+            }
+        }
 
         //public const string ConnectionString = @"XpoProvider=MSSqlServer;data source=DESKTOP-7NMQF6A;user id=sa;password=111111;initial catalog=CleanS;Persist Security Info=true";
 
