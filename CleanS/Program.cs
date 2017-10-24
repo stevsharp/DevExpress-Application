@@ -17,6 +17,7 @@ namespace CleanS
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new ThreadExceptionEventHandler(MyCommonExceptionHandlingMethod);
             SkinManager.EnableFormSkins();
+            DevExpress.Xpo.XpoDefault.DataLayer = new DevExpress.Xpo.SimpleDataLayer(new DevExpress.Xpo.DB.InMemoryDataStore());
             Application.Run(new FrmMain());
         }
 

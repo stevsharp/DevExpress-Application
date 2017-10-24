@@ -162,6 +162,7 @@ namespace CleanS.Views
             // 
             // schedulerStorage1
             // 
+            this.schedulerStorage1.Appointments.DataMember = "AppointmentEmployees";
             this.schedulerStorage1.Appointments.DataSource = this.bindingSource1;
             this.schedulerStorage1.Appointments.Mappings.AllDay = "AllDay";
             this.schedulerStorage1.Appointments.Mappings.Description = "Description";
@@ -175,6 +176,7 @@ namespace CleanS.Views
             this.schedulerStorage1.Appointments.Mappings.Status = "Status";
             this.schedulerStorage1.Appointments.Mappings.Subject = "Subject";
             this.schedulerStorage1.Appointments.Mappings.Type = "Type";
+            this.schedulerStorage1.Resources.DataSource = this.bindingSource1;
             // 
             // bindingSource1
             // 

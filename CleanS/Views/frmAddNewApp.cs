@@ -36,6 +36,16 @@ namespace CleanS.Views
         /// <summary>
         /// 
         /// </summary>
+        public Appointment Appointment
+        {
+            get
+            {
+                return apt;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         private void UpdateForm()
         {
             SuspendUpdate();
@@ -108,7 +118,6 @@ namespace CleanS.Views
                 baseEdit.MenuManager = menuManager;
             }
         }
-
         protected AppointmentStorage Appointments { get { return control.Storage.Appointments; } }
         protected internal bool IsNewAppointment { get { return controller != null ? controller.IsNewAppointment : true; } }
         protected bool IsUpdateSuspended { get { return suspendUpdateCount > 0; } }
@@ -171,5 +180,7 @@ namespace CleanS.Views
         {
 
         }
+
+
     }
 }

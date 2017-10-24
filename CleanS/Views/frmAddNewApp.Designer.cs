@@ -55,10 +55,11 @@ namespace CleanS.Views
             this.lblCustomName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.searchLookUpEdit2 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.bindingSourceContact = new System.Windows.Forms.BindingSource(this.components);
+            this.xpCollectionContract = new DevExpress.Xpo.XPCollection(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.session1 = new DevExpress.Xpo.Session(this.components);
-            this.xpCollectionContract = new DevExpress.Xpo.XPCollection(this.components);
-            this.bindingSourceContact = new System.Windows.Forms.BindingSource(this.components);
+            this.unitOfWork1 = new DevExpress.Xpo.UnitOfWork(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeEnd.Properties)).BeginInit();
@@ -75,10 +76,11 @@ namespace CleanS.Views
             ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceContact)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionContract)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.session1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionContract)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceContact)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.unitOfWork1)).BeginInit();
             this.SuspendLayout();
             // 
             // dockManager1
@@ -262,6 +264,7 @@ namespace CleanS.Views
             // xpCollectionCustomer
             // 
             this.xpCollectionCustomer.ObjectType = typeof(Customer);
+            this.xpCollectionCustomer.Session = this.session1;
             // 
             // searchLookUpEdit1View
             // 
@@ -301,6 +304,14 @@ namespace CleanS.Views
             this.searchLookUpEdit2.TabIndex = 67;
             this.searchLookUpEdit2.EditValueChanged += new System.EventHandler(this.searchLookUpEdit2_EditValueChanged);
             // 
+            // bindingSourceContact
+            // 
+            this.bindingSourceContact.DataSource = this.xpCollectionContract;
+            // 
+            // xpCollectionContract
+            // 
+            this.xpCollectionContract.ObjectType = typeof(Contract);
+            // 
             // gridView1
             // 
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
@@ -310,16 +321,15 @@ namespace CleanS.Views
             // 
             // session1
             // 
+            this.session1.ConnectionString = "XpoProvider=MSSqlServer;data source=.;integrated security=true;initial catalog=Cl" +
+    "eanS;";
             this.session1.IsObjectModifiedOnNonPersistentPropertyChange = null;
             this.session1.TrackPropertiesModifications = false;
             // 
-            // xpCollectionContract
+            // unitOfWork1
             // 
-            this.xpCollectionContract.ObjectType = typeof(Contract);
-            // 
-            // bindingSourceContact
-            // 
-            this.bindingSourceContact.DataSource = this.xpCollectionContract;
+            this.unitOfWork1.IsObjectModifiedOnNonPersistentPropertyChange = null;
+            this.unitOfWork1.TrackPropertiesModifications = false;
             // 
             // frmAddNewApp
             // 
@@ -361,10 +371,11 @@ namespace CleanS.Views
             ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCustomer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceContact)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionContract)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.session1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionContract)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceContact)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.unitOfWork1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -397,5 +408,6 @@ namespace CleanS.Views
         private DevExpress.Xpo.Session session1;
         private DevExpress.Xpo.XPCollection xpCollectionContract;
         private System.Windows.Forms.BindingSource bindingSourceContact;
+        private DevExpress.Xpo.UnitOfWork unitOfWork1;
     }
 }

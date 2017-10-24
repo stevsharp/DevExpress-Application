@@ -19,7 +19,39 @@ namespace CleanS.Views
         public frmScheduler()
         {
             InitializeComponent();
+
+            this.schedulerStorage1.AppointmentsInserted += new DevExpress.XtraScheduler.PersistentObjectsEventHandler(this.schedulerStorage_AppointmentsChanged);
+            this.schedulerStorage1.AppointmentsChanged += new DevExpress.XtraScheduler.PersistentObjectsEventHandler(this.schedulerStorage_AppointmentsChanged);
+            this.schedulerStorage1.AppointmentsDeleted += new DevExpress.XtraScheduler.PersistentObjectsEventHandler(this.schedulerStorage_AppointmentsChanged);
         }
+
+        private void schedulerStorage_AppointmentsChanged(object sender, PersistentObjectsEventArgs e)
+        {
+            try
+            {
+                AppointmentBaseCollection collection = e.Objects as AppointmentBaseCollection;
+
+                foreach (Appointment appointment in collection)
+                {
+                    var app = new Appointments(session1)
+                    {
+                        Description = appointment.Description
+                    };
+
+                    app.Save();
+                }
+
+
+                schedulerControl1.Refresh();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
         /// <summary>
         /// Day
         /// </summary>
@@ -72,8 +104,11 @@ namespace CleanS.Views
             if (apt.Type == AppointmentType.Pattern && schedulerControl1.SelectedAppointments.Contains(apt))
                 schedulerControl1.SelectedAppointments.Remove(apt);
 
-            schedulerControl1.Refresh();
+            bindingSource1.DataSource = this.xpCollection1;
 
+            
+
+            schedulerControl1.Refresh();
         }
     }
 }

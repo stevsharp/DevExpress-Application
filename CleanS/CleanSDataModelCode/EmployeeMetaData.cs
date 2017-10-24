@@ -19,7 +19,7 @@ namespace CleanS.CleanS
         [Required]
         public string LastName { get; set; }
 
-        [Struct.CustomDisplayName("EmployeeLastName", "Vat")]
+        [Struct.CustomDisplayName("EmployeeVat", "Vat")]
         [Required]
         public string Vat { get; set; }
 

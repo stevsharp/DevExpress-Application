@@ -11,11 +11,32 @@ using DevExpress.Xpo;
 using DevExpress.Data.Filtering;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+
 namespace CleanS.DataModel.CleanSDataModelCode.CleanS
 {
     public static class ConnectionHelper
     {
-        public const string ConnectionString = @"XpoProvider=MSSqlServer;data source=localhost;user id=sa;password=MANOSm!11;initial catalog=CleanS;Persist Security Info=true";
+        //public const string ConnectionString = @"XpoProvider=MSSqlServer;data source=localhost;user id=sa;password=MANOSm!11;initial catalog=CleanS;Persist Security Info=true";
+
+        public static String ConnectionString
+        {
+            get
+            {
+                return ConfigurationManager.ConnectionStrings["XPOServiceConnection"].ConnectionString;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static String ConnectionStringSql
+        {
+            get
+            {
+                return ConfigurationManager.ConnectionStrings["ServiceConnection"].ConnectionString;
+            }
+        }
+
         public static void Connect(DevExpress.Xpo.DB.AutoCreateOption autoCreateOption)
         {
             XpoDefault.DataLayer = XpoDefault.GetDataLayer(ConnectionString, autoCreateOption);
