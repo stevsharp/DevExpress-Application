@@ -54,19 +54,8 @@ namespace CleanS.Views
 
         private void AddCustomFieldsMapping()
         {
-            //AppointmentCustomFieldMapping customNameMapping = new AppointmentCustomFieldMapping("CustomName", "CustomName");
-            //AppointmentCustomFieldMapping customStatusMapping = new AppointmentCustomFieldMapping("CustomStatus", "CustomStatus");
-            //AppointmentCustomFieldMapping CustomTypeMapping = new AppointmentCustomFieldMapping("CustomType", "CustomType");
-            //AppointmentCustomFieldMapping PhysiotherapistId = new AppointmentCustomFieldMapping("PhysiotherapistId", "PhysiotherapistId");
-            //AppointmentCustomFieldMapping CustomInjuryId = new AppointmentCustomFieldMapping("InjuryId", "InjuryId");
-            //AppointmentCustomFieldMapping XrisiId = new AppointmentCustomFieldMapping("XrisiId", "XrisiId");
-
-            //schedulerStorage1.Appointments.CustomFieldMappings.Add(customNameMapping);
-            //schedulerStorage1.Appointments.CustomFieldMappings.Add(customStatusMapping);
-            //schedulerStorage1.Appointments.CustomFieldMappings.Add(CustomTypeMapping);
-            //schedulerStorage1.Appointments.CustomFieldMappings.Add(PhysiotherapistId);
-            //schedulerStorage1.Appointments.CustomFieldMappings.Add(CustomInjuryId);
-            //schedulerStorage1.Appointments.CustomFieldMappings.Add(XrisiId);
+            var IdContractMapping = new AppointmentCustomFieldMapping("IdContract", "IdContract");
+            schedulerStorage1.Appointments.CustomFieldMappings.Add(IdContractMapping);
         }
 
         /// <summary>

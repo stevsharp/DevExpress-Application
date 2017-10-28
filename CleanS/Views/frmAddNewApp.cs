@@ -153,6 +153,8 @@ namespace CleanS.Views
             controller.DisplayEnd = this.dtEnd.DateTime.Date + this.timeEnd.Time.TimeOfDay;
             controller.Subject = txSubject.Text;
             controller.Description = memoEdit1.Text;
+            controller.ContractMapping = searchLookUpEdit2.EditValue.ToString();
+
 
             controller.ApplyChanges();
         }
@@ -209,6 +211,11 @@ namespace CleanS.Views
 
         }
 
+        public string ContractMapping
+        {
+            get { return (string)EditedAppointmentCopy.CustomFields["IdContract"]; }
+            set { EditedAppointmentCopy.CustomFields["IdContract"] = value; }
+        }
 
     }
 }
