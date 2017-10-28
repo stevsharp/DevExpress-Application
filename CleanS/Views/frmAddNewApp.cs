@@ -167,12 +167,7 @@ namespace CleanS.Views
             {
                 if (Convert.ToBoolean(row[0].ToString()))
                 {
-                    var r = cleanSDataset.ContractEmployee.NewContractEmployeeRow();
-                    r["IdContract"] = searchLookUpEdit2.EditValue.ToString();
-                    r["IdEmployee"] = searchLookUpEdit2.EditValue.ToString();
-                    cleanSDataset.ContractEmployee.Rows.Add(r);
-                    cleanSDataset.ContractEmployee.AcceptChanges();
-                    ContractEmployeeTB.Update(cleanSDataset.ContractEmployee);
+                    ContractEmployeeTB.InsertQuery(Convert.ToInt32(searchLookUpEdit2.EditValue.ToString()), Convert.ToInt32(row[3].ToString()));
                 }
             }
 
