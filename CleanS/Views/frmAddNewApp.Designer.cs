@@ -1,4 +1,5 @@
 ﻿using CleanS.CleanS;
+using CleanS.Dataset;
 
 namespace CleanS.Views
 {
@@ -50,14 +51,14 @@ namespace CleanS.Views
             this.txSubject = new DevExpress.XtraEditors.MemoEdit();
             this.searchLookUpEdit1 = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.bindingSourceCustomer = new System.Windows.Forms.BindingSource(this.components);
+            this.cleanSDataset = new Dataset.CleanSDataset();
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xpCollectionCustomer = new DevExpress.Xpo.XPCollection(this.components);
             this.session1 = new DevExpress.Xpo.Session(this.components);
-            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.lblCustomName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.searchLookUpEdit2 = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.bindingSourceContact = new System.Windows.Forms.BindingSource(this.components);
-            this.xpCollectionContract = new DevExpress.Xpo.XPCollection(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.unitOfWork1 = new DevExpress.Xpo.UnitOfWork(this.components);
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
@@ -74,6 +75,12 @@ namespace CleanS.Views
             this.colSelect = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLastName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.customerTableAdapter = new Dataset.CleanSDatasetTableAdapters.CustomerTableAdapter();
+            this.contractTableAdapter = new Dataset.CleanSDatasetTableAdapters.ContractTableAdapter();
+            this.colIdContract = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIdCustomer = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCreateDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHours = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeEnd.Properties)).BeginInit();
@@ -87,12 +94,12 @@ namespace CleanS.Views
             ((System.ComponentModel.ISupportInitialize)(this.txSubject.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cleanSDataset)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.session1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceContact)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionContract)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.unitOfWork1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
@@ -284,18 +291,13 @@ namespace CleanS.Views
             // 
             // bindingSourceCustomer
             // 
-            this.bindingSourceCustomer.DataSource = this.xpCollectionCustomer;
+            this.bindingSourceCustomer.DataMember = "Customer";
+            this.bindingSourceCustomer.DataSource = this.cleanSDataset;
             // 
-            // xpCollectionCustomer
+            // cleanSDataset
             // 
-            this.xpCollectionCustomer.Session = this.session1;
-            // 
-            // session1
-            // 
-            this.session1.ConnectionString = "XpoProvider=MSSqlServer;data source=.;integrated security=true;initial catalog=Cl" +
-    "eanS;";
-            this.session1.IsObjectModifiedOnNonPersistentPropertyChange = null;
-            this.session1.TrackPropertiesModifications = false;
+            this.cleanSDataset.DataSetName = "CleanSDataset";
+            this.cleanSDataset.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // searchLookUpEdit1View
             // 
@@ -303,6 +305,11 @@ namespace CleanS.Views
             this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // session1
+            // 
+            this.session1.IsObjectModifiedOnNonPersistentPropertyChange = null;
+            this.session1.TrackPropertiesModifications = false;
             // 
             // lblCustomName
             // 
@@ -330,7 +337,7 @@ namespace CleanS.Views
             this.searchLookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.searchLookUpEdit2.Properties.DataSource = this.bindingSourceContact;
-            this.searchLookUpEdit2.Properties.DisplayMember = "IdCustomer!Key";
+            this.searchLookUpEdit2.Properties.DisplayMember = "IdCustomer";
             this.searchLookUpEdit2.Properties.ValueMember = "IdContract";
             this.searchLookUpEdit2.Properties.View = this.gridView1;
             this.searchLookUpEdit2.Size = new System.Drawing.Size(662, 20);
@@ -339,10 +346,16 @@ namespace CleanS.Views
             // 
             // bindingSourceContact
             // 
-            this.bindingSourceContact.DataSource = this.xpCollectionContract;
+            this.bindingSourceContact.DataMember = "Contract";
+            this.bindingSourceContact.DataSource = this.cleanSDataset;
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colIdContract,
+            this.colIdCustomer,
+            this.colCreateDate,
+            this.colHours});
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -464,6 +477,42 @@ namespace CleanS.Views
             this.colLastName.VisibleIndex = 2;
             this.colLastName.Width = 261;
             // 
+            // customerTableAdapter
+            // 
+            this.customerTableAdapter.ClearBeforeFill = true;
+            // 
+            // contractTableAdapter
+            // 
+            this.contractTableAdapter.ClearBeforeFill = true;
+            // 
+            // colIdContract
+            // 
+            this.colIdContract.FieldName = "IdContract";
+            this.colIdContract.Name = "colIdContract";
+            this.colIdContract.Visible = true;
+            this.colIdContract.VisibleIndex = 0;
+            // 
+            // colIdCustomer
+            // 
+            this.colIdCustomer.FieldName = "IdCustomer";
+            this.colIdCustomer.Name = "colIdCustomer";
+            this.colIdCustomer.Visible = true;
+            this.colIdCustomer.VisibleIndex = 1;
+            // 
+            // colCreateDate
+            // 
+            this.colCreateDate.FieldName = "CreateDate";
+            this.colCreateDate.Name = "colCreateDate";
+            this.colCreateDate.Visible = true;
+            this.colCreateDate.VisibleIndex = 2;
+            // 
+            // colHours
+            // 
+            this.colHours.FieldName = "Hours";
+            this.colHours.Name = "colHours";
+            this.colHours.Visible = true;
+            this.colHours.VisibleIndex = 3;
+            // 
             // frmAddNewApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -506,12 +555,12 @@ namespace CleanS.Views
             ((System.ComponentModel.ISupportInitialize)(this.txSubject.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cleanSDataset)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCustomer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.session1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceContact)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionContract)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.unitOfWork1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
@@ -550,7 +599,6 @@ namespace CleanS.Views
         private System.Windows.Forms.BindingSource bindingSourceCustomer;
         private DevExpress.Xpo.XPCollection xpCollectionCustomer;
         private DevExpress.Xpo.Session session1;
-        private DevExpress.Xpo.XPCollection xpCollectionContract;
         private System.Windows.Forms.BindingSource bindingSourceContact;
         private DevExpress.Xpo.UnitOfWork unitOfWork1;
         private System.Windows.Forms.Label label2;
@@ -567,5 +615,12 @@ namespace CleanS.Views
         private DevExpress.XtraGrid.Columns.GridColumn colSelect;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraGrid.Columns.GridColumn colLastName;
+        private CleanSDataset cleanSDataset;
+        private Dataset.CleanSDatasetTableAdapters.CustomerTableAdapter customerTableAdapter;
+        private Dataset.CleanSDatasetTableAdapters.ContractTableAdapter contractTableAdapter;
+        private DevExpress.XtraGrid.Columns.GridColumn colIdContract;
+        private DevExpress.XtraGrid.Columns.GridColumn colIdCustomer;
+        private DevExpress.XtraGrid.Columns.GridColumn colCreateDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colHours;
     }
 }
