@@ -144,6 +144,11 @@
     <Compile Include="CleanSDataModelCode\ServiceMetaData.cs" />
     <Compile Include="DataModel\CleanSDataModelCode\CleanSDataModelCode\ConnectionHelper.cs" />
     <Compile Include="DataModel\CleanSDataModelCode\ConnectionHelper.cs" />
+    <Compile Include="Dataset\CleanSDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CleanSDataset.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ErrorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,6 +231,17 @@
     <None Include="CleanSDataMode.xpo" />
     <None Include="CleanSDataMode.xpo.diagram">
       <DependentUpon>CleanSDataMode.xpo</DependentUpon>
+    </None>
+    <None Include="Dataset\CleanSDataset.xsc">
+      <DependentUpon>CleanSDataset.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\CleanSDataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CleanSDataset.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\CleanSDataset.xss">
+      <DependentUpon>CleanSDataset.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -48,6 +48,7 @@ namespace CleanS.Views
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.xpCollection1 = new DevExpress.Xpo.XPCollection(this.components);
             this.session1 = new DevExpress.Xpo.Session(this.components);
+            this.unitOfWork1 = new DevExpress.Xpo.UnitOfWork(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1.CalendarTimeProperties)).BeginInit();
@@ -56,6 +57,7 @@ namespace CleanS.Views
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.session1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.unitOfWork1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -192,6 +194,11 @@ namespace CleanS.Views
             this.session1.IsObjectModifiedOnNonPersistentPropertyChange = null;
             this.session1.TrackPropertiesModifications = false;
             // 
+            // unitOfWork1
+            // 
+            this.unitOfWork1.IsObjectModifiedOnNonPersistentPropertyChange = null;
+            this.unitOfWork1.TrackPropertiesModifications = false;
+            // 
             // frmScheduler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -211,6 +218,7 @@ namespace CleanS.Views
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.session1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.unitOfWork1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,5 +239,6 @@ namespace CleanS.Views
         private DevExpress.Xpo.XPCollection xpCollection1;
         private DevExpress.Xpo.Session session1;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private DevExpress.Xpo.UnitOfWork unitOfWork1;
     }
 }

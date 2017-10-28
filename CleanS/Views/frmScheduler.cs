@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraScheduler;
 using CleanS.Base;
 using CleanS.CleanS;
+using DevExpress.Xpo;
 
 namespace CleanS.Views
 {
@@ -29,19 +30,9 @@ namespace CleanS.Views
         {
             try
             {
-                AppointmentBaseCollection collection = e.Objects as AppointmentBaseCollection;
-
-                foreach (Appointment appointment in collection)
-                {
-                    var app = new Appointments(session1)
-                    {
-                        Description = appointment.Description
-                    };
-
-                    app.Save();
-                }
 
 
+                unitOfWork1.CommitChanges();
                 schedulerControl1.Refresh();
 
             }
@@ -104,10 +95,9 @@ namespace CleanS.Views
             if (apt.Type == AppointmentType.Pattern && schedulerControl1.SelectedAppointments.Contains(apt))
                 schedulerControl1.SelectedAppointments.Remove(apt);
 
-            bindingSource1.DataSource = this.xpCollection1;
-
             
 
+       
             schedulerControl1.Refresh();
         }
     }
