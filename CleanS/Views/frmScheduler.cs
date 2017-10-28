@@ -30,9 +30,9 @@ namespace CleanS.Views
         {
             try
             {
+                this.appointmentsTableAdapter.Update(this.cleanSDataset);
+                this.cleanSDataset.AcceptChanges();
 
-
-                unitOfWork1.CommitChanges();
                 schedulerControl1.Refresh();
 
             }
@@ -99,6 +99,13 @@ namespace CleanS.Views
 
        
             schedulerControl1.Refresh();
+        }
+
+        private void frmScheduler_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'cleanSDataset.Appointments' table. You can move, or remove it, as needed.
+            this.appointmentsTableAdapter.Fill(this.cleanSDataset.Appointments);
+
         }
     }
 }

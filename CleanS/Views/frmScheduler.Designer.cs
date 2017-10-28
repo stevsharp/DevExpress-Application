@@ -1,4 +1,5 @@
 ﻿using CleanS.CleanS;
+using CleanS.Dataset;
 
 namespace CleanS.Views
 {
@@ -44,20 +45,17 @@ namespace CleanS.Views
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.dateNavigator1 = new DevExpress.XtraScheduler.DateNavigator();
             this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
-            this.schedulerStorage1 = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.xpCollection1 = new DevExpress.Xpo.XPCollection(this.components);
-            this.session1 = new DevExpress.Xpo.Session(this.components);
-            this.unitOfWork1 = new DevExpress.Xpo.UnitOfWork(this.components);
+            this.cleanSDataset = new CleanSDataset();
+            this.appointmentsTableAdapter = new Dataset.CleanSDatasetTableAdapters.AppointmentsTableAdapter();
+            this.schedulerStorage1 = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpCollection1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.session1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.unitOfWork1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cleanSDataset)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -162,9 +160,22 @@ namespace CleanS.Views
             this.schedulerControl1.Views.WorkWeekView.TimeRulers.Add(timeRuler3);
             this.schedulerControl1.EditAppointmentFormShowing += new DevExpress.XtraScheduler.AppointmentFormEventHandler(this.schedulerControl1_EditAppointmentFormShowing);
             // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataMember = "Appointments";
+            this.bindingSource1.DataSource = this.cleanSDataset;
+            // 
+            // cleanSDataset
+            // 
+            this.cleanSDataset.DataSetName = "CleanSDataset";
+            this.cleanSDataset.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // appointmentsTableAdapter
+            // 
+            this.appointmentsTableAdapter.ClearBeforeFill = true;
+            // 
             // schedulerStorage1
             // 
-            this.schedulerStorage1.Appointments.DataMember = "AppointmentEmployees";
             this.schedulerStorage1.Appointments.DataSource = this.bindingSource1;
             this.schedulerStorage1.Appointments.Mappings.AllDay = "AllDay";
             this.schedulerStorage1.Appointments.Mappings.Description = "Description";
@@ -178,26 +189,6 @@ namespace CleanS.Views
             this.schedulerStorage1.Appointments.Mappings.Status = "Status";
             this.schedulerStorage1.Appointments.Mappings.Subject = "Subject";
             this.schedulerStorage1.Appointments.Mappings.Type = "Type";
-            this.schedulerStorage1.Resources.DataSource = this.bindingSource1;
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = this.xpCollection1;
-            // 
-            // xpCollection1
-            // 
-            this.xpCollection1.ObjectType = typeof(Appointments);
-            this.xpCollection1.Session = this.session1;
-            // 
-            // session1
-            // 
-            this.session1.IsObjectModifiedOnNonPersistentPropertyChange = null;
-            this.session1.TrackPropertiesModifications = false;
-            // 
-            // unitOfWork1
-            // 
-            this.unitOfWork1.IsObjectModifiedOnNonPersistentPropertyChange = null;
-            this.unitOfWork1.TrackPropertiesModifications = false;
             // 
             // frmScheduler
             // 
@@ -210,15 +201,14 @@ namespace CleanS.Views
             this.Name = "frmScheduler";
             this.Ribbon = this.ribbonControl1;
             this.Text = "frmScheduler";
+            this.Load += new System.EventHandler(this.frmScheduler_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpCollection1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.session1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.unitOfWork1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cleanSDataset)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,14 +221,13 @@ namespace CleanS.Views
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraScheduler.DateNavigator dateNavigator1;
         private DevExpress.XtraScheduler.SchedulerControl schedulerControl1;
-        private DevExpress.XtraScheduler.SchedulerStorage schedulerStorage1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
-        private DevExpress.Xpo.XPCollection xpCollection1;
-        private DevExpress.Xpo.Session session1;
         private System.Windows.Forms.BindingSource bindingSource1;
-        private DevExpress.Xpo.UnitOfWork unitOfWork1;
+        private CleanSDataset cleanSDataset;
+        private Dataset.CleanSDatasetTableAdapters.AppointmentsTableAdapter appointmentsTableAdapter;
+        private DevExpress.XtraScheduler.SchedulerStorage schedulerStorage1;
     }
 }
