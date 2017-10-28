@@ -60,6 +60,10 @@ namespace CleanS.Views
             this.searchLookUpEdit2 = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.bindingSourceContact = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colIdContract = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIdCustomer = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCreateDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHours = new DevExpress.XtraGrid.Columns.GridColumn();
             this.unitOfWork1 = new DevExpress.Xpo.UnitOfWork(this.components);
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.label2 = new System.Windows.Forms.Label();
@@ -77,10 +81,7 @@ namespace CleanS.Views
             this.colLastName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.customerTableAdapter = new Dataset.CleanSDatasetTableAdapters.CustomerTableAdapter();
             this.contractTableAdapter = new Dataset.CleanSDatasetTableAdapters.ContractTableAdapter();
-            this.colIdContract = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colIdCustomer = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCreateDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colHours = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dataColumn4 = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeEnd.Properties)).BeginInit();
@@ -361,6 +362,34 @@ namespace CleanS.Views
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
+            // colIdContract
+            // 
+            this.colIdContract.FieldName = "IdContract";
+            this.colIdContract.Name = "colIdContract";
+            this.colIdContract.Visible = true;
+            this.colIdContract.VisibleIndex = 0;
+            // 
+            // colIdCustomer
+            // 
+            this.colIdCustomer.FieldName = "IdCustomer";
+            this.colIdCustomer.Name = "colIdCustomer";
+            this.colIdCustomer.Visible = true;
+            this.colIdCustomer.VisibleIndex = 1;
+            // 
+            // colCreateDate
+            // 
+            this.colCreateDate.FieldName = "CreateDate";
+            this.colCreateDate.Name = "colCreateDate";
+            this.colCreateDate.Visible = true;
+            this.colCreateDate.VisibleIndex = 2;
+            // 
+            // colHours
+            // 
+            this.colHours.FieldName = "Hours";
+            this.colHours.Name = "colHours";
+            this.colHours.Visible = true;
+            this.colHours.VisibleIndex = 3;
+            // 
             // unitOfWork1
             // 
             this.unitOfWork1.IsObjectModifiedOnNonPersistentPropertyChange = null;
@@ -421,7 +450,8 @@ namespace CleanS.Views
             this.dtEmp.Columns.AddRange(new System.Data.DataColumn[] {
             this.dataColumn1,
             this.dataColumn2,
-            this.dataColumn3});
+            this.dataColumn3,
+            this.dataColumn4});
             this.dtEmp.TableName = "dtEmp";
             // 
             // dataColumn1
@@ -485,33 +515,10 @@ namespace CleanS.Views
             // 
             this.contractTableAdapter.ClearBeforeFill = true;
             // 
-            // colIdContract
+            // dataColumn4
             // 
-            this.colIdContract.FieldName = "IdContract";
-            this.colIdContract.Name = "colIdContract";
-            this.colIdContract.Visible = true;
-            this.colIdContract.VisibleIndex = 0;
-            // 
-            // colIdCustomer
-            // 
-            this.colIdCustomer.FieldName = "IdCustomer";
-            this.colIdCustomer.Name = "colIdCustomer";
-            this.colIdCustomer.Visible = true;
-            this.colIdCustomer.VisibleIndex = 1;
-            // 
-            // colCreateDate
-            // 
-            this.colCreateDate.FieldName = "CreateDate";
-            this.colCreateDate.Name = "colCreateDate";
-            this.colCreateDate.Visible = true;
-            this.colCreateDate.VisibleIndex = 2;
-            // 
-            // colHours
-            // 
-            this.colHours.FieldName = "Hours";
-            this.colHours.Name = "colHours";
-            this.colHours.Visible = true;
-            this.colHours.VisibleIndex = 3;
+            this.dataColumn4.ColumnName = "Id";
+            this.dataColumn4.DataType = typeof(int);
             // 
             // frmAddNewApp
             // 
@@ -622,5 +629,6 @@ namespace CleanS.Views
         private DevExpress.XtraGrid.Columns.GridColumn colIdCustomer;
         private DevExpress.XtraGrid.Columns.GridColumn colCreateDate;
         private DevExpress.XtraGrid.Columns.GridColumn colHours;
+        private System.Data.DataColumn dataColumn4;
     }
 }

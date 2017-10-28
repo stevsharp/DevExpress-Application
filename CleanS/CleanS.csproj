@@ -144,6 +144,9 @@
     <Compile Include="CleanSDataModelCode\ServiceMetaData.cs" />
     <Compile Include="DataModel\CleanSDataModelCode\CleanSDataModelCode\ConnectionHelper.cs" />
     <Compile Include="DataModel\CleanSDataModelCode\ConnectionHelper.cs" />
+    <Compile Include="Dataset\CleanSDataset.cs">
+      <DependentUpon>CleanSDataset.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\CleanSDataset.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

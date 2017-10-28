@@ -5,6 +5,8 @@ using DevExpress.XtraScheduler;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraScheduler.UI;
 using CleanS.CleanS;
+using CleanS.Dataset.CleanSDatasetTableAdapters;
+using System.Data;
 
 namespace CleanS.Views
 {
@@ -16,6 +18,8 @@ namespace CleanS.Views
         protected int suspendUpdateCount;
         protected IDXMenuManager menuManager;
         protected MyAppointmentFormController controller;
+        protected ViewEmpPerContractTableAdapter ViewEmpPerContract;
+        protected ContractEmployeeTableAdapter ContractEmployeeTB;
         /// <summary>
         /// 
         /// </summary>
@@ -156,6 +160,21 @@ namespace CleanS.Views
             controller.Description = memoEdit1.Text;
             controller.ContractMapping = searchLookUpEdit2.EditValue.ToString();
 
+            ContractEmployeeTB = new ContractEmployeeTableAdapter();
+            ContractEmployeeTB.DeleteQueryWithIdContract(Convert.ToInt32(controller.ContractMapping));
+
+            foreach (DataRow row in dataSet1.Tables[0].Rows)
+            {
+                if (Convert.ToBoolean(row[0].ToString()))
+                {
+                    var r = cleanSDataset.ContractEmployee.NewContractEmployeeRow();
+                    r["IdContract"] = searchLookUpEdit2.EditValue.ToString();
+                    r["IdEmployee"] = searchLookUpEdit2.EditValue.ToString();
+                    cleanSDataset.ContractEmployee.Rows.Add(r);
+                    cleanSDataset.ContractEmployee.AcceptChanges();
+                    ContractEmployeeTB.Update(cleanSDataset.ContractEmployee);
+                }
+            }
 
             controller.ApplyChanges();
         }
@@ -166,7 +185,44 @@ namespace CleanS.Views
         /// <param name="e"></param>
         private void searchLookUpEdit2_EditValueChanged(object sender, EventArgs e)
         {
+            try
+            {
+                var value = searchLookUpEdit2.EditValue;
+                ViewEmpPerContract.Fill(this.cleanSDataset.ViewEmpPerContract);
 
+                if (this.cleanSDataset.ViewEmpPerContract.Count > 0)
+                {
+                    DataView dv = new DataView(cleanSDataset.ViewEmpPerContract)
+                    {
+                        RowFilter = "IdEmployee=" + value
+                    };
+
+                    if (dv.Count > 0)
+                    {
+                        dataSet1.Tables[0].Clear();
+                        dataSet1.Tables[0].AcceptChanges();
+
+                        foreach (DataRowView rowView in dv)
+                        {
+                            var row = dataSet1.Tables[0].NewRow();
+                            row[1] = rowView["FirstName"];
+                            row[2] = rowView["LastName"];
+                            row["Id"] = rowView["IdEmployee"];
+
+                            dataSet1.Tables[0].Rows.Add(row);
+                        }
+
+                        dataSet1.Tables[0].AcceptChanges();
+
+                    }
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+            }
         }
         /// <summary>
         /// /
@@ -175,6 +231,7 @@ namespace CleanS.Views
         /// <param name="e"></param>
         private void frmAddNewApp_Load(object sender, EventArgs e)
         {
+            ViewEmpPerContract = new ViewEmpPerContractTableAdapter();
             this.contractTableAdapter.Fill(this.cleanSDataset.Contract);
             this.customerTableAdapter.Fill(this.cleanSDataset.Customer);
 
@@ -188,14 +245,13 @@ namespace CleanS.Views
         {
             try
             {
+                this.searchLookUpEdit2.EditValueChanged -= new System.EventHandler(this.searchLookUpEdit2_EditValueChanged);
                 var value = searchLookUpEdit1.EditValue;
                 this.contractTableAdapter.FillByIdCustomer(cleanSDataset.Contract,(int)value);
+                this.searchLookUpEdit2.EditValueChanged += new System.EventHandler(this.searchLookUpEdit2_EditValueChanged);
             }
             catch (Exception)
-            {
-
-                throw;
-            }
+            {}
         }
     }
     /// <summary>
