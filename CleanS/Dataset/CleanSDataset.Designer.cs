@@ -8517,11 +8517,17 @@ SELECT IdContract, IdCustomer, CreateDate, Hours FROM Contract WHERE (IdContract
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT IdContract, IdCustomer, CreateDate, Hours FROM dbo.Contract";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT IdContract, IdCustomer, CreateDate, Hours FROM dbo.Contract\r\nwhere IdCusto" +
+                "mer=@IdCustomer";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdCustomer", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IdCustomer", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8543,6 +8549,42 @@ SELECT IdContract, IdCustomer, CreateDate, Hours FROM Contract WHERE (IdContract
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual CleanSDataset.ContractDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            CleanSDataset.ContractDataTable dataTable = new CleanSDataset.ContractDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByIdCustomer(CleanSDataset.ContractDataTable dataTable, global::System.Nullable<int> IdCustomer) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((IdCustomer.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IdCustomer.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual CleanSDataset.ContractDataTable GetDataByIdCustomer(global::System.Nullable<int> IdCustomer) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((IdCustomer.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(IdCustomer.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             CleanSDataset.ContractDataTable dataTable = new CleanSDataset.ContractDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

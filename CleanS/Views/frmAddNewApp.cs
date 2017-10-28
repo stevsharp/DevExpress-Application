@@ -175,9 +175,7 @@ namespace CleanS.Views
         /// <param name="e"></param>
         private void frmAddNewApp_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cleanSDataset.Contract' table. You can move, or remove it, as needed.
             this.contractTableAdapter.Fill(this.cleanSDataset.Contract);
-            // TODO: This line of code loads data into the 'cleanSDataset.Customer' table. You can move, or remove it, as needed.
             this.customerTableAdapter.Fill(this.cleanSDataset.Customer);
 
         }
@@ -188,7 +186,16 @@ namespace CleanS.Views
         /// <param name="e"></param>
         private void searchLookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
+            try
+            {
+                var value = searchLookUpEdit1.EditValue;
+                this.contractTableAdapter.FillByIdCustomer(cleanSDataset.Contract,(int)value);
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
         }
     }
     /// <summary>
