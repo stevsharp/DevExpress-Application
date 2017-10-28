@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using DevExpress.XtraScheduler;
-using CleanS.Base;
-using CleanS.CleanS;
-using DevExpress.Xpo;
+using DevExpress.XtraScheduler.Services;
+using DevExpress.XtraScheduler.Commands;
+using DevExpress.Utils.Menu;
 
 namespace CleanS.Views
 {
@@ -20,12 +12,68 @@ namespace CleanS.Views
         public frmScheduler()
         {
             InitializeComponent();
+            AddCustomFieldsMapping();
+            this.schedulerControl1.PopupMenuShowing += new DevExpress.XtraScheduler.PopupMenuShowingEventHandler(this.schedulerControl1_PopupMenuShowing);
 
             this.schedulerStorage1.AppointmentsInserted += new DevExpress.XtraScheduler.PersistentObjectsEventHandler(this.schedulerStorage_AppointmentsChanged);
             this.schedulerStorage1.AppointmentsChanged += new DevExpress.XtraScheduler.PersistentObjectsEventHandler(this.schedulerStorage_AppointmentsChanged);
             this.schedulerStorage1.AppointmentsDeleted += new DevExpress.XtraScheduler.PersistentObjectsEventHandler(this.schedulerStorage_AppointmentsChanged);
         }
 
+        private void schedulerControl1_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.Menu.Id == DevExpress.XtraScheduler.SchedulerMenuItemId.DefaultMenu)
+            {
+                // Hide the "Change View To" menu item.
+                SchedulerPopupMenu itemChangeViewTo = e.Menu.GetPopupMenuById(SchedulerMenuItemId.SwitchViewMenu);
+                itemChangeViewTo.Visible = false;
+
+                // Remove unnecessary items.
+                e.Menu.RemoveMenuItem(SchedulerMenuItemId.NewAllDayEvent);
+                e.Menu.RemoveMenuItem(SchedulerMenuItemId.NewRecurringAppointment);
+                e.Menu.RemoveMenuItem(SchedulerMenuItemId.NewRecurringEvent);
+
+                // Disable the "New Recurring Appointment" menu item.
+                e.Menu.DisableMenuItem(SchedulerMenuItemId.NewRecurringAppointment);
+
+                // Find the "New Appointment" menu item and rename it.
+                SchedulerMenuItem item = e.Menu.GetMenuItemById(SchedulerMenuItemId.NewAppointment);
+                if (item != null) item.Caption = "&Νέο ραντεβού";
+
+                // Create a menu item for the Scheduler command.
+                ISchedulerCommandFactoryService service =
+                (ISchedulerCommandFactoryService)schedulerControl1.GetService(typeof(ISchedulerCommandFactoryService));
+                SchedulerCommand cmd = service.CreateCommand(SchedulerCommandId.SwitchToGroupByResource);
+                SchedulerMenuItemCommandWinAdapter menuItemCommandAdapter =
+                    new SchedulerMenuItemCommandWinAdapter(cmd);
+                DXMenuItem menuItem = (DXMenuItem)menuItemCommandAdapter.CreateMenuItem(DXMenuItemPriority.Normal);
+                menuItem.BeginGroup = true;
+                e.Menu.Items.Add(menuItem);
+            }
+        }
+
+        private void AddCustomFieldsMapping()
+        {
+            //AppointmentCustomFieldMapping customNameMapping = new AppointmentCustomFieldMapping("CustomName", "CustomName");
+            //AppointmentCustomFieldMapping customStatusMapping = new AppointmentCustomFieldMapping("CustomStatus", "CustomStatus");
+            //AppointmentCustomFieldMapping CustomTypeMapping = new AppointmentCustomFieldMapping("CustomType", "CustomType");
+            //AppointmentCustomFieldMapping PhysiotherapistId = new AppointmentCustomFieldMapping("PhysiotherapistId", "PhysiotherapistId");
+            //AppointmentCustomFieldMapping CustomInjuryId = new AppointmentCustomFieldMapping("InjuryId", "InjuryId");
+            //AppointmentCustomFieldMapping XrisiId = new AppointmentCustomFieldMapping("XrisiId", "XrisiId");
+
+            //schedulerStorage1.Appointments.CustomFieldMappings.Add(customNameMapping);
+            //schedulerStorage1.Appointments.CustomFieldMappings.Add(customStatusMapping);
+            //schedulerStorage1.Appointments.CustomFieldMappings.Add(CustomTypeMapping);
+            //schedulerStorage1.Appointments.CustomFieldMappings.Add(PhysiotherapistId);
+            //schedulerStorage1.Appointments.CustomFieldMappings.Add(CustomInjuryId);
+            //schedulerStorage1.Appointments.CustomFieldMappings.Add(XrisiId);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void schedulerStorage_AppointmentsChanged(object sender, PersistentObjectsEventArgs e)
         {
             try
@@ -95,15 +143,12 @@ namespace CleanS.Views
             if (apt.Type == AppointmentType.Pattern && schedulerControl1.SelectedAppointments.Contains(apt))
                 schedulerControl1.SelectedAppointments.Remove(apt);
 
-            
-
-       
+           
             schedulerControl1.Refresh();
         }
 
         private void frmScheduler_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'cleanSDataset.Appointments' table. You can move, or remove it, as needed.
             this.appointmentsTableAdapter.Fill(this.cleanSDataset.Appointments);
 
         }
