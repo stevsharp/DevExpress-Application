@@ -51,6 +51,7 @@ namespace CleanS.Views
             this.searchLookUpEdit1 = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.bindingSourceCustomer = new System.Windows.Forms.BindingSource(this.components);
             this.xpCollectionCustomer = new DevExpress.Xpo.XPCollection(this.components);
+            this.session1 = new DevExpress.Xpo.Session(this.components);
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.lblCustomName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,8 +59,21 @@ namespace CleanS.Views
             this.bindingSourceContact = new System.Windows.Forms.BindingSource(this.components);
             this.xpCollectionContract = new DevExpress.Xpo.XPCollection(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.session1 = new DevExpress.Xpo.Session(this.components);
             this.unitOfWork1 = new DevExpress.Xpo.UnitOfWork(this.components);
+            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.bindingSourceEmp = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSet1 = new System.Data.DataSet();
+            this.dtEmp = new System.Data.DataTable();
+            this.dataColumn1 = new System.Data.DataColumn();
+            this.dataColumn2 = new System.Data.DataColumn();
+            this.dataColumn3 = new System.Data.DataColumn();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colSelect = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLastName = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeEnd.Properties)).BeginInit();
@@ -74,13 +88,19 @@ namespace CleanS.Views
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCustomer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.session1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceContact)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollectionContract)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.session1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.unitOfWork1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEmp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtEmp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // dockManager1
@@ -103,9 +123,9 @@ namespace CleanS.Views
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnOK);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 365);
+            this.panel1.Location = new System.Drawing.Point(0, 508);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(786, 67);
+            this.panel1.Size = new System.Drawing.Size(784, 67);
             this.panel1.TabIndex = 1;
             // 
             // btnCancel
@@ -175,7 +195,7 @@ namespace CleanS.Views
             // 
             // lblEnd
             // 
-            this.lblEnd.Location = new System.Drawing.Point(6, 118);
+            this.lblEnd.Location = new System.Drawing.Point(8, 118);
             this.lblEnd.Name = "lblEnd";
             this.lblEnd.Size = new System.Drawing.Size(48, 18);
             this.lblEnd.TabIndex = 64;
@@ -183,7 +203,7 @@ namespace CleanS.Views
             // 
             // lblStart
             // 
-            this.lblStart.Location = new System.Drawing.Point(6, 94);
+            this.lblStart.Location = new System.Drawing.Point(8, 94);
             this.lblStart.Name = "lblStart";
             this.lblStart.Size = new System.Drawing.Size(56, 18);
             this.lblStart.TabIndex = 63;
@@ -229,7 +249,7 @@ namespace CleanS.Views
             // 
             // lblSubject
             // 
-            this.lblSubject.Location = new System.Drawing.Point(6, 13);
+            this.lblSubject.Location = new System.Drawing.Point(8, 13);
             this.lblSubject.Name = "lblSubject";
             this.lblSubject.Size = new System.Drawing.Size(48, 18);
             this.lblSubject.TabIndex = 58;
@@ -237,6 +257,8 @@ namespace CleanS.Views
             // 
             // txSubject
             // 
+            this.txSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txSubject.EditValue = "";
             this.txSubject.Location = new System.Drawing.Point(112, 12);
             this.txSubject.Name = "txSubject";
@@ -245,6 +267,8 @@ namespace CleanS.Views
             // 
             // searchLookUpEdit1
             // 
+            this.searchLookUpEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.searchLookUpEdit1.EditValue = "";
             this.searchLookUpEdit1.Location = new System.Drawing.Point(112, 142);
             this.searchLookUpEdit1.Name = "searchLookUpEdit1";
@@ -266,6 +290,13 @@ namespace CleanS.Views
             this.xpCollectionCustomer.ObjectType = typeof(Customer);
             this.xpCollectionCustomer.Session = this.session1;
             // 
+            // session1
+            // 
+            this.session1.ConnectionString = "XpoProvider=MSSqlServer;data source=.;integrated security=true;initial catalog=Cl" +
+    "eanS;";
+            this.session1.IsObjectModifiedOnNonPersistentPropertyChange = null;
+            this.session1.TrackPropertiesModifications = false;
+            // 
             // searchLookUpEdit1View
             // 
             this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
@@ -275,7 +306,7 @@ namespace CleanS.Views
             // 
             // lblCustomName
             // 
-            this.lblCustomName.Location = new System.Drawing.Point(6, 143);
+            this.lblCustomName.Location = new System.Drawing.Point(8, 143);
             this.lblCustomName.Name = "lblCustomName";
             this.lblCustomName.Size = new System.Drawing.Size(80, 19);
             this.lblCustomName.TabIndex = 66;
@@ -283,7 +314,7 @@ namespace CleanS.Views
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(6, 167);
+            this.label1.Location = new System.Drawing.Point(8, 167);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 19);
             this.label1.TabIndex = 68;
@@ -291,6 +322,8 @@ namespace CleanS.Views
             // 
             // searchLookUpEdit2
             // 
+            this.searchLookUpEdit2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.searchLookUpEdit2.EditValue = "";
             this.searchLookUpEdit2.Location = new System.Drawing.Point(112, 166);
             this.searchLookUpEdit2.Name = "searchLookUpEdit2";
@@ -319,23 +352,126 @@ namespace CleanS.Views
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // session1
-            // 
-            this.session1.ConnectionString = "XpoProvider=MSSqlServer;data source=.;integrated security=true;initial catalog=Cl" +
-    "eanS;";
-            this.session1.IsObjectModifiedOnNonPersistentPropertyChange = null;
-            this.session1.TrackPropertiesModifications = false;
-            // 
             // unitOfWork1
             // 
             this.unitOfWork1.IsObjectModifiedOnNonPersistentPropertyChange = null;
             this.unitOfWork1.TrackPropertiesModifications = false;
             // 
+            // memoEdit1
+            // 
+            this.memoEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.memoEdit1.Location = new System.Drawing.Point(112, 359);
+            this.memoEdit1.Name = "memoEdit1";
+            this.memoEdit1.Size = new System.Drawing.Size(660, 143);
+            this.memoEdit1.TabIndex = 69;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(8, 361);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 19);
+            this.label2.TabIndex = 70;
+            this.label2.Text = "Σχόλια";
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(8, 192);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 20);
+            this.label3.TabIndex = 71;
+            this.label3.Text = "Εργαζόμενοι";
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControl1.DataSource = this.bindingSourceEmp;
+            this.gridControl1.Location = new System.Drawing.Point(112, 192);
+            this.gridControl1.MainView = this.gridView2;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(662, 161);
+            this.gridControl1.TabIndex = 72;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
+            // bindingSourceEmp
+            // 
+            this.bindingSourceEmp.DataMember = "dtEmp";
+            this.bindingSourceEmp.DataSource = this.dataSet1;
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "NewDataSet";
+            this.dataSet1.Tables.AddRange(new System.Data.DataTable[] {
+            this.dtEmp});
+            // 
+            // dtEmp
+            // 
+            this.dtEmp.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn1,
+            this.dataColumn2,
+            this.dataColumn3});
+            this.dtEmp.TableName = "dtEmp";
+            // 
+            // dataColumn1
+            // 
+            this.dataColumn1.ColumnName = "Select";
+            this.dataColumn1.DataType = typeof(bool);
+            // 
+            // dataColumn2
+            // 
+            this.dataColumn2.ColumnName = "Name";
+            // 
+            // dataColumn3
+            // 
+            this.dataColumn3.ColumnName = "Last Name";
+            // 
+            // gridView2
+            // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colSelect,
+            this.colName,
+            this.colLastName});
+            this.gridView2.GridControl = this.gridControl1;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsView.ShowAutoFilterRow = true;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
+            // colSelect
+            // 
+            this.colSelect.FieldName = "Select";
+            this.colSelect.Name = "colSelect";
+            this.colSelect.Visible = true;
+            this.colSelect.VisibleIndex = 0;
+            this.colSelect.Width = 126;
+            // 
+            // colName
+            // 
+            this.colName.FieldName = "Name";
+            this.colName.Name = "colName";
+            this.colName.Visible = true;
+            this.colName.VisibleIndex = 1;
+            this.colName.Width = 257;
+            // 
+            // colLastName
+            // 
+            this.colLastName.FieldName = "Last Name";
+            this.colLastName.Name = "colLastName";
+            this.colLastName.Visible = true;
+            this.colLastName.VisibleIndex = 2;
+            this.colLastName.Width = 261;
+            // 
             // frmAddNewApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(786, 432);
+            this.ClientSize = new System.Drawing.Size(784, 575);
+            this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.memoEdit1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchLookUpEdit2);
             this.Controls.Add(this.lblCustomName);
@@ -355,6 +491,7 @@ namespace CleanS.Views
             this.Controls.Add(this.panel1);
             this.Name = "frmAddNewApp";
             this.Text = "frmAddNewApp";
+            this.Load += new System.EventHandler(this.frmAddNewApp_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.timeEnd.Properties)).EndInit();
@@ -369,13 +506,19 @@ namespace CleanS.Views
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCustomer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.session1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceContact)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollectionContract)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.session1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.unitOfWork1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEmp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtEmp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -409,5 +552,19 @@ namespace CleanS.Views
         private DevExpress.Xpo.XPCollection xpCollectionContract;
         private System.Windows.Forms.BindingSource bindingSourceContact;
         private DevExpress.Xpo.UnitOfWork unitOfWork1;
+        private System.Windows.Forms.Label label2;
+        private DevExpress.XtraEditors.MemoEdit memoEdit1;
+        private System.Windows.Forms.Label label3;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private System.Windows.Forms.BindingSource bindingSourceEmp;
+        private System.Data.DataSet dataSet1;
+        private System.Data.DataTable dtEmp;
+        private System.Data.DataColumn dataColumn1;
+        private System.Data.DataColumn dataColumn2;
+        private System.Data.DataColumn dataColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn colSelect;
+        private DevExpress.XtraGrid.Columns.GridColumn colName;
+        private DevExpress.XtraGrid.Columns.GridColumn colLastName;
     }
 }

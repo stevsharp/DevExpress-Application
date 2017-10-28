@@ -155,6 +155,11 @@ namespace CleanS.Views
         {
 
         }
+
+        private void frmAddNewApp_Load(object sender, EventArgs e)
+        {
+
+        }
     }
     /// <summary>
     /// 
