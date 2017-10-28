@@ -137,7 +137,11 @@ namespace CleanS.Views
         {
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (!controller.IsConflictResolved())
@@ -148,15 +152,34 @@ namespace CleanS.Views
             controller.DisplayStart = this.dtStart.DateTime.Date + this.timeStart.Time.TimeOfDay;
             controller.DisplayEnd = this.dtEnd.DateTime.Date + this.timeEnd.Time.TimeOfDay;
             controller.Subject = txSubject.Text;
+            controller.Description = memoEdit1.Text;
+
             controller.ApplyChanges();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void searchLookUpEdit2_EditValueChanged(object sender, EventArgs e)
         {
 
         }
-
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmAddNewApp_Load(object sender, EventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void searchLookUpEdit1_EditValueChanged(object sender, EventArgs e)
         {
 
         }

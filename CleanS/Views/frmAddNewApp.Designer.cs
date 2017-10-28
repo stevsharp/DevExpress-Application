@@ -280,6 +280,7 @@ namespace CleanS.Views
             this.searchLookUpEdit1.Properties.View = this.searchLookUpEdit1View;
             this.searchLookUpEdit1.Size = new System.Drawing.Size(662, 20);
             this.searchLookUpEdit1.TabIndex = 65;
+            this.searchLookUpEdit1.EditValueChanged += new System.EventHandler(this.searchLookUpEdit1_EditValueChanged);
             // 
             // bindingSourceCustomer
             // 
@@ -287,7 +288,6 @@ namespace CleanS.Views
             // 
             // xpCollectionCustomer
             // 
-            this.xpCollectionCustomer.ObjectType = typeof(Customer);
             this.xpCollectionCustomer.Session = this.session1;
             // 
             // session1
@@ -340,10 +340,6 @@ namespace CleanS.Views
             // bindingSourceContact
             // 
             this.bindingSourceContact.DataSource = this.xpCollectionContract;
-            // 
-            // xpCollectionContract
-            // 
-            this.xpCollectionContract.ObjectType = typeof(Contract);
             // 
             // gridView1
             // 
@@ -441,6 +437,7 @@ namespace CleanS.Views
             // 
             // colSelect
             // 
+            this.colSelect.Caption = "Επιλογή";
             this.colSelect.FieldName = "Select";
             this.colSelect.Name = "colSelect";
             this.colSelect.Visible = true;
@@ -449,16 +446,20 @@ namespace CleanS.Views
             // 
             // colName
             // 
+            this.colName.Caption = "Όνομα";
             this.colName.FieldName = "Name";
             this.colName.Name = "colName";
+            this.colName.OptionsColumn.AllowEdit = false;
             this.colName.Visible = true;
             this.colName.VisibleIndex = 1;
             this.colName.Width = 257;
             // 
             // colLastName
             // 
+            this.colLastName.Caption = "Επωνυμο";
             this.colLastName.FieldName = "Last Name";
             this.colLastName.Name = "colLastName";
+            this.colLastName.OptionsColumn.AllowEdit = false;
             this.colLastName.Visible = true;
             this.colLastName.VisibleIndex = 2;
             this.colLastName.Width = 261;
