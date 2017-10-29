@@ -75,13 +75,13 @@ namespace CleanS.Views
             this.dataColumn1 = new System.Data.DataColumn();
             this.dataColumn2 = new System.Data.DataColumn();
             this.dataColumn3 = new System.Data.DataColumn();
+            this.dataColumn4 = new System.Data.DataColumn();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSelect = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLastName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.customerTableAdapter = new Dataset.CleanSDatasetTableAdapters.CustomerTableAdapter();
             this.contractTableAdapter = new Dataset.CleanSDatasetTableAdapters.ContractTableAdapter();
-            this.dataColumn4 = new System.Data.DataColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeEnd.Properties)).BeginInit();
@@ -467,6 +467,11 @@ namespace CleanS.Views
             // 
             this.dataColumn3.ColumnName = "Last Name";
             // 
+            // dataColumn4
+            // 
+            this.dataColumn4.ColumnName = "Id";
+            this.dataColumn4.DataType = typeof(int);
+            // 
             // gridView2
             // 
             this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -514,11 +519,6 @@ namespace CleanS.Views
             // contractTableAdapter
             // 
             this.contractTableAdapter.ClearBeforeFill = true;
-            // 
-            // dataColumn4
-            // 
-            this.dataColumn4.ColumnName = "Id";
-            this.dataColumn4.DataType = typeof(int);
             // 
             // frmAddNewApp
             // 

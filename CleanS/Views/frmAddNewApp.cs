@@ -20,6 +20,7 @@ namespace CleanS.Views
         protected MyAppointmentFormController controller;
         protected ViewEmpPerContractTableAdapter ViewEmpPerContract;
         protected ContractEmployeeTableAdapter ContractEmployeeTB;
+        protected EmployeeTableAdapter employeeTableAdapter;
         /// <summary>
         /// 
         /// </summary>
@@ -166,9 +167,7 @@ namespace CleanS.Views
             foreach (DataRow row in dataSet1.Tables[0].Rows)
             {
                 if (Convert.ToBoolean(row[0].ToString()))
-                {
                     ContractEmployeeTB.InsertQuery(Convert.ToInt32(searchLookUpEdit2.EditValue.ToString()), Convert.ToInt32(row[3].ToString()));
-                }
             }
 
             controller.ApplyChanges();
@@ -184,13 +183,11 @@ namespace CleanS.Views
             {
                 var value = searchLookUpEdit2.EditValue;
                 ViewEmpPerContract.Fill(this.cleanSDataset.ViewEmpPerContract);
+                employeeTableAdapter.Fill(this.cleanSDataset.Employee);
 
                 if (this.cleanSDataset.ViewEmpPerContract.Count > 0)
                 {
-                    DataView dv = new DataView(cleanSDataset.ViewEmpPerContract)
-                    {
-                        RowFilter = "IdEmployee=" + value
-                    };
+                    DataView dv = new DataView(cleanSDataset.ViewEmpPerContract) { RowFilter = "IdContract=" + value };
 
                     if (dv.Count > 0)
                     {
@@ -200,6 +197,7 @@ namespace CleanS.Views
                         foreach (DataRowView rowView in dv)
                         {
                             var row = dataSet1.Tables[0].NewRow();
+                            row[0] = true;
                             row[1] = rowView["FirstName"];
                             row[2] = rowView["LastName"];
                             row["Id"] = rowView["IdEmployee"];
@@ -208,10 +206,23 @@ namespace CleanS.Views
                         }
 
                         dataSet1.Tables[0].AcceptChanges();
+                    }
 
+                    foreach (var rowEmp in this.cleanSDataset.Employee)
+                    {
+                        var dataView = new DataView(dataSet1.Tables[0]) { RowFilter = "id=" + rowEmp["IdEmployee"] };
+                        if (dataView.Count == 0)
+                        {
+
+                            var row = dataSet1.Tables[0].NewRow();
+                            row[0] = false;
+                            row[1] = rowEmp["FirstName"];
+                            row[2] = rowEmp["LastName"];
+                            dataSet1.Tables[0].Rows.Add(row);
+                            dataSet1.Tables[0].AcceptChanges();
+                        }
                     }
                 }
-
 
             }
             catch (Exception)
@@ -227,6 +238,7 @@ namespace CleanS.Views
         private void frmAddNewApp_Load(object sender, EventArgs e)
         {
             ViewEmpPerContract = new ViewEmpPerContractTableAdapter();
+            employeeTableAdapter = new EmployeeTableAdapter();
             this.contractTableAdapter.Fill(this.cleanSDataset.Contract);
             this.customerTableAdapter.Fill(this.cleanSDataset.Customer);
 
@@ -242,11 +254,11 @@ namespace CleanS.Views
             {
                 this.searchLookUpEdit2.EditValueChanged -= new System.EventHandler(this.searchLookUpEdit2_EditValueChanged);
                 var value = searchLookUpEdit1.EditValue;
-                this.contractTableAdapter.FillByIdCustomer(cleanSDataset.Contract,(int)value);
+                this.contractTableAdapter.FillByIdCustomer(cleanSDataset.Contract, (int)value);
                 this.searchLookUpEdit2.EditValueChanged += new System.EventHandler(this.searchLookUpEdit2_EditValueChanged);
             }
             catch (Exception)
-            {}
+            { }
         }
     }
     /// <summary>
