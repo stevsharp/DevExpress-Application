@@ -933,9 +933,9 @@ SELECT IdService, Description, IdPriceList FROM Service WHERE (IdService = @IdSe
               <DbSource ConnectionRef="CleanSConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT        Employee.IdEmployee, Employee.FirstName, Employee.LastName, Employee.Vat, Employee.Doy, Employee.IdEmployeeComp, Employee.IdEmployeeGroup, Employee.Wage, ContractEmployee.IdContract
+                    <CommandText>SELECT DISTINCT Employee.IdEmployee, Employee.FirstName, Employee.LastName, Employee.Vat, Employee.Doy, Employee.IdEmployeeComp, Employee.IdEmployeeGroup, Employee.Wage, ContractEmployee.IdContract
 FROM            ContractEmployee INNER JOIN
-                         Employee ON ContractEmployee.IdEmployee = Employee.IdEmployee INNER JOIN
+                         Employee ON ContractEmployee.IdEmployee = Employee.IdEmployee LEFT OUTER JOIN
                          AppointmentEmployee ON AppointmentEmployee.IdEmployee = Employee.IdEmployee</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -1323,10 +1323,6 @@ FROM            ContractEmployee INNER JOIN
     <xs:unique name="Service_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Service" />
       <xs:field xpath="mstns:IdService" />
-    </xs:unique>
-    <xs:unique name="ViewEmpPerContract_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:ViewEmpPerContract" />
-      <xs:field xpath="mstns:IdEmployee" />
     </xs:unique>
   </xs:element>
   <xs:annotation>

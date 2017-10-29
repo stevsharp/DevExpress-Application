@@ -211,22 +211,28 @@ namespace CleanS.Views
             try
             {
                 var value = searchLookUpEdit2.EditValue;
-                FillGrid(value);
+                //FillGrid(value);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void FillGrid(object value)
         {
+            dataSet1.Tables[0].Clear();
+            dataSet1.Tables[0].AcceptChanges();
+            gridControl1.RefreshDataSource();
+
+
             if (ViewEmpPerContract == null)
                 ViewEmpPerContract = new ViewEmpPerContractTableAdapter();
 
             if (employeeTableAdapter == null)
                 employeeTableAdapter = new EmployeeTableAdapter();
 
+           
             ViewEmpPerContract.Fill(this.cleanSDataset.ViewEmpPerContract);
             employeeTableAdapter.Fill(this.cleanSDataset.Employee);
 
@@ -279,6 +285,8 @@ namespace CleanS.Views
         /// <param name="e"></param>
         private void frmAddNewApp_Load(object sender, EventArgs e)
         {
+            //this.cleanSDataset.EnforceConstraints = false;
+
             ViewEmpPerContract = new ViewEmpPerContractTableAdapter();
             employeeTableAdapter = new EmployeeTableAdapter();
             this.contractTableAdapter.Fill(this.cleanSDataset.Contract);

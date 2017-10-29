@@ -5171,13 +5171,6 @@ namespace CleanS.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ViewEmpPerContractRow FindByIdEmployee(int IdEmployee) {
-                return ((ViewEmpPerContractRow)(this.Rows.Find(new object[] {
-                            IdEmployee})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 ViewEmpPerContractDataTable cln = ((ViewEmpPerContractDataTable)(base.Clone()));
                 cln.InitVars();
@@ -5225,10 +5218,7 @@ namespace CleanS.Dataset {
                 base.Columns.Add(this.columnIdEmployeeGroup);
                 this.columnWage = new global::System.Data.DataColumn("Wage", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnWage);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnIdEmployee}, true));
                 this.columnIdEmployee.AllowDBNull = false;
-                this.columnIdEmployee.Unique = true;
                 this.columnFirstName.MaxLength = 50;
                 this.columnLastName.MaxLength = 50;
                 this.columnVat.AllowDBNull = false;
@@ -13680,9 +13670,9 @@ SELECT IdService, Description, IdPriceList FROM Service WHERE (IdService = @IdSe
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        Employee.IdEmployee, Employee.FirstName, Employee.LastName, Employee.Vat, Employee.Doy, Employee.IdEmployeeComp, Employee.IdEmployeeGroup, Employee.Wage, ContractEmployee.IdContract
+            this._commandCollection[0].CommandText = @"SELECT DISTINCT Employee.IdEmployee, Employee.FirstName, Employee.LastName, Employee.Vat, Employee.Doy, Employee.IdEmployeeComp, Employee.IdEmployeeGroup, Employee.Wage, ContractEmployee.IdContract
 FROM            ContractEmployee INNER JOIN
-                         Employee ON ContractEmployee.IdEmployee = Employee.IdEmployee INNER JOIN
+                         Employee ON ContractEmployee.IdEmployee = Employee.IdEmployee LEFT OUTER JOIN
                          AppointmentEmployee ON AppointmentEmployee.IdEmployee = Employee.IdEmployee";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }

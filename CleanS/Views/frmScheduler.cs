@@ -73,15 +73,89 @@ namespace CleanS.Views
         {
             try
             {
-                this.appointmentsTableAdapter.Update(this.cleanSDataset);
+
+                int rowID = this.appointmentsTableAdapter.Update(this.cleanSDataset);
                 this.cleanSDataset.AcceptChanges();
 
+                DataView dv = new DataView(this.cleanSDataset.Tables["Appointments"]) { RowFilter = "ResourceID=1"};
+                int id = 0;
+
+                if (dv.Count  > 0)
+                {
+                    foreach (DataRowView rowView in dv)
+                    {
+                        id = Convert.ToInt32(rowView["UniqueID"].ToString());
+
+                        Appointment app = (Appointment)e.Objects[0];
+
+                        this.dsEmp = app.CustomFields["dsEmp"] as DataTable;
+
+                        if (dsEmp.Rows.Count > 0)
+                        {
+                            var appointmentEmployeeTableAdapter = new AppointmentEmployeeTableAdapter();
+                            appointmentEmployeeTableAdapter.DeleteQueryUniqueID(id);
+
+                            foreach (DataRow row in dsEmp.Rows)
+                            {
+                                var select = Convert.ToBoolean(row[0].ToString());
+                                if (select)
+                                    appointmentEmployeeTableAdapter.Insert(Convert.ToInt32(row["id"].ToString()), id);
+                            }
+                        }
+
+                        schedulerControl1.Storage.SetAppointmentId((Appointment)e.Objects[0], id);
+
+
+                    }
+                }
+
+                foreach(DataRow r in this.cleanSDataset.Tables["Appointments"].Rows)
+                {
+                    if (Convert.ToInt32(r["ResourceID"].ToString()) == 1)
+                        r["ResourceID"] = 0;
+                }
+
+
+                this.cleanSDataset.AcceptChanges();
+                schedulerControl1.Refresh();
+
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void schedulerStorage_UpdatedAppointmentsChanged(object sender, PersistentObjectsEventArgs e)
+        {
+            try
+            {
+
                 var current = bindingSource1.Current as System.Data.DataRowView;
+                var guid = Guid.NewGuid();
+
+                var changes = this.cleanSDataset.Tables["Appointments"].GetChanges();
+                changes.Rows[0]["ResourceIDs"] = guid.ToString();
+                changes.AcceptChanges();
+
+                int rowID = this.appointmentsTableAdapter.Update(this.cleanSDataset);
+                this.cleanSDataset.AcceptChanges();
+
+                DataView dv = new DataView(this.cleanSDataset.Tables["Appointments"]) { RowFilter = "ResourceIDs='" + guid.ToString() + "'" };
+                int id = 0;
+
+                if (dv.Count > 0)
+                {
+                    foreach (DataRowView rowView in dv)
+                    {
+                        id = Convert.ToInt32(rowView["UniqueID"].ToString());
+                    }
+                }
+
                 if (current != null)
                 {
-                    int id = Convert.ToInt32(current[0].ToString());
 
-                  
                     Appointment app = (Appointment)e.Objects[0];
 
                     this.dsEmp = app.CustomFields["dsEmp"] as DataTable;
@@ -178,6 +252,44 @@ namespace CleanS.Views
         {
             this.appointmentsTableAdapter.Fill(this.cleanSDataset.Appointments);
 
+            this.cleanSDataset.Appointments.RowChanged += Appointments_RowChanged;
+            this.cleanSDataset.Appointments.TableNewRow += Appointments_TableNewRow;
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Appointments_TableNewRow(object sender, DataTableNewRowEventArgs e)
+        {
+           
+        }
+
+        private void Appointments_RowChanged(object sender, DataRowChangeEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case DataRowAction.Nothing:
+                    break;
+                case DataRowAction.Delete:
+                    break;
+                case DataRowAction.Change:
+                    break;
+                case DataRowAction.Rollback:
+                    break;
+                case DataRowAction.Commit:
+                    break;
+                case DataRowAction.Add:
+                    e.Row["ResourceID"] = (Int32)1;
+                    break;
+                case DataRowAction.ChangeOriginal:
+                    break;
+                case DataRowAction.ChangeCurrentAndOriginal:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
