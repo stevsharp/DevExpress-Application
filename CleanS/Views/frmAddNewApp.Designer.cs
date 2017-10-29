@@ -82,6 +82,7 @@ namespace CleanS.Views
             this.colLastName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.customerTableAdapter = new Dataset.CleanSDatasetTableAdapters.CustomerTableAdapter();
             this.contractTableAdapter = new Dataset.CleanSDatasetTableAdapters.ContractTableAdapter();
+            this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.timeEnd.Properties)).BeginInit();
@@ -109,6 +110,7 @@ namespace CleanS.Views
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtEmp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // dockManager1
@@ -520,6 +522,10 @@ namespace CleanS.Views
             // 
             this.contractTableAdapter.ClearBeforeFill = true;
             // 
+            // dxErrorProvider1
+            // 
+            this.dxErrorProvider1.ContainerControl = this;
+            // 
             // frmAddNewApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -576,6 +582,7 @@ namespace CleanS.Views
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtEmp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -630,5 +637,6 @@ namespace CleanS.Views
         private DevExpress.XtraGrid.Columns.GridColumn colCreateDate;
         private DevExpress.XtraGrid.Columns.GridColumn colHours;
         private System.Data.DataColumn dataColumn4;
+        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider1;
     }
 }
