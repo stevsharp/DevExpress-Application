@@ -187,7 +187,6 @@ namespace CleanS.Views
                 return;
             }
 
-
             controller.SetStatus(edStatus.Status);
             controller.SetLabel(edLabel.Label);
             controller.DisplayStart = this.dtStart.DateTime.Date + this.timeStart.Time.TimeOfDay;
@@ -195,42 +194,6 @@ namespace CleanS.Views
             controller.Subject = txSubject.Text;
             controller.Description = memoEdit1.Text;
             controller.ContractMapping = Convert.ToInt32(searchLookUpEdit2.EditValue.ToString());
-
-
-            if (dataSet1.HasChanges())
-            {
-                //var cn = contractTableAdapter.Connection;
-                //cn.Open();
-                //var trans = cn.BeginTransaction();
-
-                try
-                {
-                    
-
-                    //ContractEmployeeTB = new ContractEmployeeTableAdapter
-                    //{
-                    //    //Transaction = trans
-                    //};
-                    //ContractEmployeeTB.DeleteQueryWithIdContract(Convert.ToInt32(controller.ContractMapping));
-
-                    //foreach (DataRow row in dataSet1.Tables[0].Rows)
-                    //{
-                    //    if (Convert.ToBoolean(row[0].ToString()))
-                    //        ContractEmployeeTB.InsertQuery(Convert.ToInt32(searchLookUpEdit2.EditValue.ToString()), Convert.ToInt32(row[3].ToString()));
-                    //}
-
-                    //trans.Commit();
-                }
-                catch (Exception ex)
-                {
-                    //trans.Rollback();
-                }
-                finally
-                {
-                    //cn.Close();
-                }
-            }
-
             controller.dsEmp = this.GetEmp;
 
             controller.ApplyChanges();

@@ -73,7 +73,6 @@ namespace CleanS.Views
         {
             try
             {
-               
                 this.appointmentsTableAdapter.Update(this.cleanSDataset);
                 this.cleanSDataset.AcceptChanges();
 
@@ -82,8 +81,7 @@ namespace CleanS.Views
                 {
                     int id = Convert.ToInt32(current[0].ToString());
 
-                   
-
+                  
                     Appointment app = (Appointment)e.Objects[0];
 
                     this.dsEmp = app.CustomFields["dsEmp"] as DataTable;
@@ -100,6 +98,7 @@ namespace CleanS.Views
                                 appointmentEmployeeTableAdapter.Insert(Convert.ToInt32(row["id"].ToString()), id);
                         }
                     }
+
                     schedulerControl1.Storage.SetAppointmentId((Appointment)e.Objects[0], id);
                 }
 
