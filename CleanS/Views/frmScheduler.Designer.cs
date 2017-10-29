@@ -45,17 +45,17 @@ namespace CleanS.Views
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.dateNavigator1 = new DevExpress.XtraScheduler.DateNavigator();
             this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
+            this.schedulerStorage1 = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.cleanSDataset = new CleanSDataset();
             this.appointmentsTableAdapter = new Dataset.CleanSDatasetTableAdapters.AppointmentsTableAdapter();
-            this.schedulerStorage1 = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cleanSDataset)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -160,20 +160,6 @@ namespace CleanS.Views
             this.schedulerControl1.Views.WorkWeekView.TimeRulers.Add(timeRuler3);
             this.schedulerControl1.EditAppointmentFormShowing += new DevExpress.XtraScheduler.AppointmentFormEventHandler(this.schedulerControl1_EditAppointmentFormShowing);
             // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataMember = "Appointments";
-            this.bindingSource1.DataSource = this.cleanSDataset;
-            // 
-            // cleanSDataset
-            // 
-            this.cleanSDataset.DataSetName = "CleanSDataset";
-            this.cleanSDataset.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // appointmentsTableAdapter
-            // 
-            this.appointmentsTableAdapter.ClearBeforeFill = true;
-            // 
             // schedulerStorage1
             // 
             this.schedulerStorage1.Appointments.DataSource = this.bindingSource1;
@@ -189,6 +175,20 @@ namespace CleanS.Views
             this.schedulerStorage1.Appointments.Mappings.Status = "Status";
             this.schedulerStorage1.Appointments.Mappings.Subject = "Subject";
             this.schedulerStorage1.Appointments.Mappings.Type = "Type";
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataMember = "Appointments";
+            this.bindingSource1.DataSource = this.cleanSDataset;
+            // 
+            // cleanSDataset
+            // 
+            this.cleanSDataset.DataSetName = "CleanSDataset";
+            this.cleanSDataset.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // appointmentsTableAdapter
+            // 
+            this.appointmentsTableAdapter.ClearBeforeFill = true;
             // 
             // frmScheduler
             // 
@@ -206,9 +206,9 @@ namespace CleanS.Views
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateNavigator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cleanSDataset)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

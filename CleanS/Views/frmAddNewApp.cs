@@ -30,6 +30,7 @@ namespace CleanS.Views
         public frmAddNewApp(SchedulerControl control, Appointment apt, bool openRecurrenceForm)
         {
             this.openRecurrenceForm = openRecurrenceForm;
+ 
             this.controller = new MyAppointmentFormController(control, apt);
             this.apt = apt;
             this.control = control;
@@ -132,6 +133,8 @@ namespace CleanS.Views
         protected bool IsUpdateSuspended { get { return suspendUpdateCount > 0; } }
         public IDXMenuManager MenuManager { get { return menuManager; } }
 
+        public int AppId { get; }
+
         protected void SuspendUpdate()
         {
             suspendUpdateCount++;
@@ -146,6 +149,16 @@ namespace CleanS.Views
         {
 
         }
+
+        public DataTable GetEmp
+        {
+            get
+            {
+                return dataSet1.Tables[0];
+            }
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -158,11 +171,22 @@ namespace CleanS.Views
 
             dxErrorProvider1.ClearErrors();
 
-            if (searchLookUpEdit2.EditValue.ToString() == String.Empty)
+            if (txSubject.Text == String.Empty)
             {
+                txSubject.Focus();
                 dxErrorProvider1.SetError(searchLookUpEdit2, "*");
                 return;
             }
+
+            dxErrorProvider1.ClearErrors();
+
+            if (searchLookUpEdit2.EditValue.ToString() == String.Empty)
+            {
+                searchLookUpEdit2.Focus();
+                dxErrorProvider1.SetError(searchLookUpEdit2, "*");
+                return;
+            }
+
 
             controller.SetStatus(edStatus.Status);
             controller.SetLabel(edLabel.Label);
@@ -181,18 +205,19 @@ namespace CleanS.Views
 
                 try
                 {
+                    
 
-                    ContractEmployeeTB = new ContractEmployeeTableAdapter
-                    {
-                        //Transaction = trans
-                    };
-                    ContractEmployeeTB.DeleteQueryWithIdContract(Convert.ToInt32(controller.ContractMapping));
+                    //ContractEmployeeTB = new ContractEmployeeTableAdapter
+                    //{
+                    //    //Transaction = trans
+                    //};
+                    //ContractEmployeeTB.DeleteQueryWithIdContract(Convert.ToInt32(controller.ContractMapping));
 
-                    foreach (DataRow row in dataSet1.Tables[0].Rows)
-                    {
-                        if (Convert.ToBoolean(row[0].ToString()))
-                            ContractEmployeeTB.InsertQuery(Convert.ToInt32(searchLookUpEdit2.EditValue.ToString()), Convert.ToInt32(row[3].ToString()));
-                    }
+                    //foreach (DataRow row in dataSet1.Tables[0].Rows)
+                    //{
+                    //    if (Convert.ToBoolean(row[0].ToString()))
+                    //        ContractEmployeeTB.InsertQuery(Convert.ToInt32(searchLookUpEdit2.EditValue.ToString()), Convert.ToInt32(row[3].ToString()));
+                    //}
 
                     //trans.Commit();
                 }
@@ -206,7 +231,12 @@ namespace CleanS.Views
                 }
             }
 
+            controller.dsEmp = this.GetEmp;
+
             controller.ApplyChanges();
+            this.DialogResult = DialogResult.OK;
+
+
         }
         /// <summary>
         /// 
@@ -335,15 +365,40 @@ namespace CleanS.Views
 
         }
 
+        public DataTable dsEmp
+        {
+            get
+            {
+                var id = new DataTable();
+
+                try
+                {
+
+                    id = (DataTable)EditedAppointmentCopy.CustomFields["dsEmp"];
+                }
+                catch (Exception) { }
+                return id;
+
+            }
+            set
+            {
+                EditedAppointmentCopy.CustomFields["dsEmp"] = value;
+            }
+        }
         public int ContractMapping
         {
             get {
                 int id = 0;
-                if (int.TryParse(EditedAppointmentCopy.CustomFields["IdContract"].ToString(), out id))
-                {
-                    id = Convert.ToInt32(EditedAppointmentCopy.CustomFields["IdContract"].ToString()); 
-                }
 
+                try
+                {
+                    if (int.TryParse(EditedAppointmentCopy.CustomFields["IdContract"].ToString(), out id))
+                    {
+                        id = Convert.ToInt32(EditedAppointmentCopy.CustomFields["IdContract"].ToString()); 
+                    }
+                }
+                catch (Exception)
+                {}
                 return id;
 
             }
